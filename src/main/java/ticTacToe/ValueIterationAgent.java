@@ -104,19 +104,19 @@ public class ValueIterationAgent extends Agent {
 		
 		/* YOUR CODE HERE */
 		
-	    double Sum, Max; // variables to hokd Q-value and maximum 
+	    double Sum, Max; // variables to hold q-value and maximum 
 	    
 	    for (int i = 0; i < k; i++) {
 	        for (Game game : this.valueFunction.keySet()) { // loop through all games in the value function
 	            
-	            if (game.isTerminal()) { // skip processing for terminal stattes
+	            if (game.isTerminal()) { // skip processing for terminal  states
 	                this.valueFunction.put(game, 0.0); 
 	                continue; //to next state
 	            }
 	            Max = -Integer.MAX_VALUE; // initialize max to a very small value
 	            for (Move move : game.getPossibleMoves()) {
 	                Sum = 0; // Reset sum for each move
-	                for (TransitionProb tp : mdp.generateTransitions(game, move)) {// Generate transitions for the given move and calculate the Q-value	                    
+	                for (TransitionProb tp : mdp.generateTransitions(game, move)) {// generate transitions for the given move and calculate the q-value	                    
 	                    Sum += tp.prob * (tp.outcome.localReward + 
 	                                     (discount * this.valueFunction.get(tp.outcome.sPrime)));
 	                }
